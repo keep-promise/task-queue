@@ -19,6 +19,6 @@
   "homepage": "https://github.com/keep-promise/task-scheduler#readme",
   "devDependencies": {
     "rollup": "^2.60.0",
-    "rollup-plugin-typescript2": "^0.36.0",
+    "rollup-plugin-typescript2": "^0.36.0"
   }
 }
