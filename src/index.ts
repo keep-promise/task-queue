@@ -31,7 +31,7 @@ export class ConcurrentTask {
    */  
   next() {
     if (this.count >= this.max) return;
-    const task: Task = this.queue.shift();
+    const task: Task | undefined = this.queue.shift();
     if (!task) return;
     this.count++;
     task().then().catch().finally(() => {
@@ -61,7 +61,7 @@ export class TaskQueue {
   }
 
   run() {
-    const task: Task = this.queue.shift();
+    const task: Task | undefined = this.queue.shift();
     if (!task) return;
     this.running = true;
     task().then().catch().finally(() => {
@@ -97,7 +97,7 @@ export class TaskQueueIndex {
 
   run() {
     const currentIndex = this.nextIndex;
-    const task: Task = this.queue[currentIndex];
+    const task: Task | undefined = this.queue[currentIndex];
     task().finally(() => {
       this.nextIndex = currentIndex + 1;
       this.running = false;
@@ -113,8 +113,10 @@ export class TaskQueueIndex {
   }
 }
 
-export default {
+const TaskScheduler = {
   ConcurrentTask,
   TaskQueue,
   TaskQueueIndex
-}
+};
+
+export default TaskScheduler;
